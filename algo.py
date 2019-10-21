@@ -23,6 +23,26 @@ def fibonacci(nbr):
     a, b = b, a+b
 
 #
+# L'objectif est de déterminer l'empreinte d'un fichier à partir de sa représentation binaire.
+#
+def empreinte():
+  laChaine = input()
+
+  while '000' in laChaine:
+    laChaine = laChaine.replace('000', '00')
+
+  while '111' in laChaine:
+    laChaine = laChaine.replace('111', '1')
+
+  while '10' in laChaine:
+    laChaine = laChaine.replace('10', '1')
+
+  print(laChaine)
+
+
+
+
+#
 #   La fonction principale "main"
 #
 def main():
