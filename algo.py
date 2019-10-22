@@ -1,7 +1,10 @@
+# https://www.programiz.com/python-programming/examples good link
+# https://www.programiz.com/python-programming/methods/built-in/
+
+#   Concours Crédit Agricole 2019
+#   Vous devez déterminer le mot de passe du casier.  01
 #
-#   Vous devez déterminer le mot de passe du casier.
-#
-def motDePasse():
+def motDePasse(): # main
   entierUn = int(input())
   entierDeux = int(input())
   entierTrois = int(input())
@@ -11,6 +14,38 @@ def motDePasse():
       print(i)
       break
   pass
+
+#
+#   Le nombre de sachets qui ont une chance de contenir le ticket gagnant.  02
+#
+def sumEntier( nbr ):
+  return sum(map(int, [x for x in str(nbr)]))
+
+def ticketGagnant(): # main
+  entierUn = int(input())
+  liste = []
+  cpt = 0
+
+  for i in range(entierUn):
+    liste.append(int(input()))
+    if liste[i] is 42:
+      cpt += 1
+    while len(str(liste[i])) > 2:
+      liste[i] = sumEntier(liste[i])
+      if liste[i] is 42:
+        cpt += 1
+        continue
+  print(cpt)
+  pass
+
+
+
+
+
+
+
+
+
 
 #
 #   Vous devez déterminer si un nombre est premier ou non.
@@ -53,21 +88,29 @@ def empreinte():
 
   print(laChaine)
 
-
-
-
 #
-#   La fonction principale "main"
+#   The concours Boilerplate
 #
-def main():
-  liste = [6, 4, 2, 7, 3, 5, 1, 7, 9, 1]
+def fonctionUne( a ):
+  return a
 
-  print(liste)
-  for item in enumerate(liste):
-    if item[0] in [2, 6]:
-      liste[item[0]]= 0
+def fonctionDeux( a ):
+  return a
 
-  fibonacci(sum(liste))
+def fonctionTrois( a ):
+  return a
+
+def main(): # main
+  entierUn = int(input())
+  entierDeux = int(input())
+  entierTrois = int(input())
+  liste = []
+  result = 0
+
+  for _ in range(entierUn):
+    liste.append(int(input()))
+
+  print(result)
   pass
 
 if __name__ == "__main__":
