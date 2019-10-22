@@ -1,3 +1,4 @@
+# https://www.programiz.com/python-programming/examples good link
 def laFonctionUne(a):
   return a
 
