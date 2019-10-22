@@ -13,13 +13,13 @@ def fonctionTrois( a ):
 def main(): # main
   entierUn = int(input())
   liste = []
-  result = ' '
+  result = []
 
   for i in range(entierUn):
-    liste.append(str(input()))
+    liste.append(input())
     if liste[i] is reversed(liste[i]):
-      result = result + ' ' + liste[i]
-    print(liste[i])
+      result.append(input())
+  result = ' '.join(liste)
   print(result)
   pass
 
