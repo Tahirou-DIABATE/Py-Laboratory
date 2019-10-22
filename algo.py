@@ -1,5 +1,19 @@
 #
-#   Détermine si un nombre est premier ou non
+#   Vous devez déterminer le mot de passe du casier.
+#
+def motDePasse():
+  entierUn = int(input())
+  entierDeux = int(input())
+  entierTrois = int(input())
+
+  for i in range(entierUn, entierDeux+1):
+    if i%entierTrois is 0:
+      print(i)
+      break
+  pass
+
+#
+#   Vous devez déterminer si un nombre est premier ou non.
 #
 def isPrime(nbr):
   cpt = 0
