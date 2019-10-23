@@ -11,16 +11,25 @@ def fonctionTrois( a ):
   return a
 
 def main(): # main
-  entierUn = int(input())
-  liste = []
-  result = []
+  entrerUn = int(input())
+  entrerDeux = int(input())
+  listeUn = [int(input()) for _ in range(3)]
 
-  for i in range(entierUn):
-    liste.append(input())
-    if liste[i] is reversed(liste[i]):
-      result.append(input())
-  result = ' '.join(liste)
-  print(result)
+  entrerSix = int(input())
+  consoAvantSi = []
+
+  for i, item in enumerate(listeUn):
+    if i == 0:
+      consoAvantSi.append((entrerDeux*listeUn[0])/100)
+    else:
+      consoAvantSi.append((entrerDeux*listeUn[1])/100 - (listeUn[i-1]))
+  
+  for i in range(3):
+    if consoAvantSi[i] < listeUn[i]:
+      print("KO")
+      break
+  else:
+    print("OK")
   pass
 
 if __name__ == "__main__":
