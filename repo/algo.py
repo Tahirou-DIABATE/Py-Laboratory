@@ -4,7 +4,7 @@
 # Py-Laboratory
 # -*- coding: utf-8 -*-
 """
-  Dessine une matrice 10x10 en croix
+  Dessine une matrice 10x10 en croix.
 """
 # def main():
 from copy import deepcopy
@@ -27,6 +27,33 @@ for i in range(10):
     else:
       print("O", end='  ')
   print()
+
+"""
+  Vous devez déterminer si un nombre est premier ou non.
+"""
+def isPrime(nbr):
+  cpt = 0
+  for i in range(1, nbr):
+    if nbr % i is 0:
+      cpt += 1
+      if cpt is 2:
+        print(nbr, "N'est pas premier")
+        break
+  else:
+    print(nbr, "Est premier")
+    print(cpt)
+
+"""
+ Détermine les nombres de la suite de fib inferieur à nbr
+"""
+def fibonacci(nbr):
+  a, b = 0, 1
+  while a < nbr:
+    print(a, end=' ')
+    a, b = b, a+b
+
+
+
 
 #   Concours Crédit Agricole 2019
 """
@@ -66,42 +93,15 @@ def ticketGagnant(): # main
   print(cpt)
   pass
 
-
-
-
-
-
-
-
-
+#
 
 #
-#   Vous devez déterminer si un nombre est premier ou non.
-#
-def isPrime(nbr):
-  cpt = 0
-  for i in range(1, nbr):
-    if nbr%i is 0:
-      cpt += 1
-      if cpt is 2:
-        print(nbr, "N'est pas premier")
-        break
-  else:
-    print(nbr, "Est premier")
-    print(cpt)
 
-#
-# Détermine les nombres de la suite de fib inferieur à nbr
-#
-def fibonacci(nbr):
-  a, b = 0, 1
-  while a < nbr:
-    print(a, end=' ')
-    a, b = b, a+b
 
-#
-# L'objectif est de déterminer l'empreinte d'un fichier à partir de sa représentation binaire.
-#
+
+"""
+ L'objectif est de déterminer l'empreinte d'un fichier à partir de sa représentation binaire. 01
+"""
 def empreinte():
   laChaine = input()
 
@@ -115,6 +115,44 @@ def empreinte():
     laChaine = laChaine.replace('10', '1')
 
   print(laChaine)
+
+#
+
+#
+
+
+
+"""
+  La chaîne de caractère OK si la route est faisable, KO sinon. 01
+"""
+def carburantNecessaire(conso, distance):
+  return (conso*distance)/100
+
+def routeFaisable():  # main
+  entierUn = int(input())
+  entierDeux = int(input())
+  listeUne = [int(input()) for x in range(3)]
+  entierSix = int(input())
+
+  for index, item in enumerate(listeUne):
+    if index == 0:
+      if carburantNecessaire(entierDeux, item) > entierUn:
+        print('KO')
+        break
+    else:
+      if carburantNecessaire(entierDeux, item-listeUne[index-1]) > entierUn:
+        print('KO')
+        break
+  else:
+    if carburantNecessaire(entierDeux, entierSix-listeUne[2]) > entierUn:
+      print('KO')
+    else:
+      print('OK')
+
+#
+
+#
+
 
 
 """
@@ -214,7 +252,6 @@ def maxCoursSéchable(): # main
 
 
 """     The concours Boilerplate      """
-
 
 def fonctionUne( a ):
   return a
