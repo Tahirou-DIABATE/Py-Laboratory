@@ -155,6 +155,105 @@ def routeFaisable():  # main
 
 
 
+# Le concours blanc du Meilleur Dec de France 2019
+"""
+  Le but de challenge est de déterminer si une année est bissextile ou non. 01
+""" 
+def bissextile(): # main
+  entierUn = int(input())
+  liste = [int(input()) for _ in range(entierUn)]
+
+  for item in liste:
+    if item%400 == 0:
+      print('BISSEXTILE')
+    else:
+      if ((item%4) == 0) and ((item%100) != 0):
+        print('BISSEXTILE')
+      else:
+        print('NON BISSEXTILE')
+  pass
+
+#
+
+#
+
+# Le concours blanc du Meilleur Dec de France 2019
+"""
+  Un entier correspondant au plus grand gain potentiel en achetant une des actions. 01
+""" 
+def plusGrandGainPotentiel(): # main
+  entierUn = int(input())
+  entierDeux = int(input())
+  liste = [input() for _ in range(entierDeux)]
+
+  maxi = 0
+
+  for i in liste:
+    if entierUn > int(i.split(' ')[0]):
+      if (int(i.split(' ')[1]) - int(i.split(' ')[0])) > maxi:
+        maxi = (int(i.split(' ')[1]) - int(i.split(' ')[0]))
+  print(maxi)
+  pass
+
+#
+
+#
+
+# Battle Dev Hello Work - Mars 2019
+"""
+  Vous devez déterminer le montant gagné lors de votre pari. 01
+"""
+def montantGagneParis(): # main
+  position = int(input())
+  liste = [input() for _ in range(42)]
+
+  for i in liste:
+    position = position + (int(i.split(' ')[0]) - int(i.split(' ')[1]))
+  
+  if position <= 100:
+    print(1000)
+  else:
+    if position <= 10000:
+      print(100)
+    else:
+      print('KO')
+  pass
+
+#
+
+#
+
+
+
+
+# Battle Dev Hello Work - Mars 2019
+"""
+  Une chaîne de caractères correspondant au prénom de vainqueur. 01
+"""
+def gagantEnchere(): # main
+  nbrEncheres = int(input())
+  prixReserve = int(input())
+  liste = [input() for _ in range(nbrEncheres)]
+
+  gagant = 0
+  maxEnchere = 0
+  for index, item in enumerate(liste):
+    if int(item.split(' ')[0]) > prixReserve:
+      if int(item.split(' ')[0]) > maxEnchere:
+        maxEnchere = int(item.split(' ')[0])
+        gagant = index
+  if maxEnchere <= prixReserve:
+    print('KO')
+  else:
+    print(liste[gagant].split(' ')[1])
+  pass
+
+#
+
+#
+
+
+##############
 """
   Vous devez déterminer le nombre minimun de deplacement pour atteindre le bas de la piste.
 """
@@ -259,20 +358,13 @@ def fonctionUne( a ):
 def fonctionDeux( a ):
   return a
 
-def fonctionTrois( a ):
-  return a
-
 def main(): # main
   entierUn = int(input())
   #entierDeux = int(input())
   #entierTrois = int(input())
-  liste = []
-  result = 0
+  liste = [int(input()) for _ in range(entierUn)]
 
-  for _ in range(entierUn):
-    liste.append(int(input()))
-
-  print(result)
+  print(liste)
   pass
 
 if __name__ == "__main__":
