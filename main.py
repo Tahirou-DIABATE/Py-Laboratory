@@ -1,34 +1,38 @@
-"""     The concours Boilerplate      """
-
-def takeSecond(elem):
-    return elem[1]
+def fonctionUne( a ):
+  return a
 
 def fonctionDeux( a ):
   return a
 
 def main(): # main
-  séquenceDeLettre = input()
-  liste = []
-  ok = True
-  while ok:
-    liste.append(input())
-    if liste[-1] == '':
-      liste.remove('')
-      ok = False
+  nbrTour = int(input())
+  nbrJeton = int(input())
+  liste = [input() for _ in range(nbrTour)]
+  recharge = nbrJeton
+  cpt = 0
   
-  newListe = []
-  for mot in liste:
-    score = 0
-    for lettre in mot:
-      if lettre in séquenceDeLettre:
-        indexLettre = séquenceDeLettre.index(lettre)
-        score += int(séquenceDeLettre[indexLettre+2])
-    newListe.append((mot, score))
+  for i in liste:
+    M = i.split(' ')[0]
+    Q = i.split(' ')[1]
+    R = i.split(' ')[2]
+    
+    if Q in 'PI':
+      if ((Q == 'P') and (int(R) % 2 != 0)) or ((Q == 'P') and (int(R) == 0)):
+        nbrJeton -= int(M)
+      elif (Q == 'I') and (int(R) % 2 != 1):
+        nbrJeton -= int(M)
+      else:
+        nbrJeton += int(M)
+    else:
+      if int(Q) != int(R):
+        nbrJeton -= int(M)
+      else:
+        nbrJeton += int(M)*35
+    if nbrJeton <= 0:
+      cpt += 1
+      nbrJeton = recharge
 
-  newListe = sorted(newListe, key=takeSecond)
-
-  for i in reversed(newListe):
-    print(i[0])
+  print(cpt)
   pass
 
 if __name__ == "__main__":

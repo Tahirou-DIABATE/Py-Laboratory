@@ -1,32 +1,33 @@
-# https://www.programiz.com/python-programming/examples
-# https://www.programiz.com/python-programming/methods/built-in/
-
 # Py-Laboratory
 # -*- coding: utf-8 -*-
-"""
-  Dessine une matrice 10x10 en croix.
-"""
-# def main():
 from copy import deepcopy
 from pprint import pprint
 from collections import deque
-x = 0
 
-for i in range(10):
-  cpt = -1
-  for j in range(10):
-    if i is j:
-      x = j
-  for j in reversed(range(10)):
-    cpt = cpt + 1
-    if cpt is x:
-      print("|", end='  ')
-      continue
-    elif i is j:
-      print("|", end='  ')
-    else:
-      print("O", end='  ')
-  print()
+
+"""
+  Dessine une matrice 10x10 avec une croix.
+"""
+def matrixAvecCroix(): # main
+  x = 0
+
+  for i in range(10):
+    cpt = -1
+    for j in range(10):
+      if i is j:
+        x = j
+    for j in reversed(range(10)):
+      cpt = cpt + 1
+      if cpt is x:
+        print("|", end='  ')
+        continue
+      elif i is j:
+        print("|", end='  ')
+      else:
+        print("O", end='  ')
+    print()
+  pass
+
 
 """
   Vous devez déterminer si un nombre est premier ou non.
@@ -42,6 +43,8 @@ def isPrime(nbr):
   else:
     print(nbr, "Est premier")
     print(cpt)
+  pass
+
 
 """
  Détermine les nombres de la suite de fib inferieur à nbr
@@ -52,213 +55,39 @@ def fibonacci(nbr):
     print(a, end=' ')
     a, b = b, a+b
 
+""""""""
+def takeSecond(elem):
+    return elem[1]
 
-
-
-#   Concours Crédit Agricole 2019
-"""
-  Vous devez déterminer le mot de passe du casier.  01
-"""
-def motDePasse(): # main
-  entierUn = int(input())
-  entierDeux = int(input())
-  entierTrois = int(input())
-
-  for i in range(entierUn, entierDeux+1):
-    if i%entierTrois == 0:
-      print(i)
-      break
-  pass
-
-"""
-  Le nombre de sachets qui ont une chance de contenir le ticket gagnant.  02
-"""
-def sumEntier( nbr ):
-  return sum(map(int, [x for x in str(nbr)]))
-
-def ticketGagnant(): # main
-  entierUn = int(input())
+def scoreMot(): # main
+  séquenceDeLettre = input()
   liste = []
-  cpt = 0
-
-  for i in range(entierUn):
-    liste.append(int(input()))
-    if liste[i] is 42:
-      cpt += 1
-    while len(str(liste[i])) > 2:
-      liste[i] = sumEntier(liste[i])
-      if liste[i] is 42:
-        cpt += 1
-        continue
-  print(cpt)
-  pass
-
-#
-
-#
-
-
-
-"""
- L'objectif est de déterminer l'empreinte d'un fichier à partir de sa représentation binaire. 01
-"""
-def empreinte():
-  laChaine = input()
-
-  while '000' in laChaine:
-    laChaine = laChaine.replace('000', '00')
-
-  while '111' in laChaine:
-    laChaine = laChaine.replace('111', '1')
-
-  while '10' in laChaine:
-    laChaine = laChaine.replace('10', '1')
-
-  print(laChaine)
-
-#
-
-#
-
-
-
-"""
-  La chaîne de caractère OK si la route est faisable, KO sinon. 01
-"""
-def carburantNecessaire(conso, distance):
-  return (conso*distance)/100
-
-def routeFaisable():  # main
-  entierUn = int(input())
-  entierDeux = int(input())
-  listeUne = [int(input()) for x in range(3)]
-  entierSix = int(input())
-
-  for index, item in enumerate(listeUne):
-    if index == 0:
-      if carburantNecessaire(entierDeux, item) > entierUn:
-        print('KO')
-        break
-    else:
-      if carburantNecessaire(entierDeux, item-listeUne[index-1]) > entierUn:
-        print('KO')
-        break
-  else:
-    if carburantNecessaire(entierDeux, entierSix-listeUne[2]) > entierUn:
-      print('KO')
-    else:
-      print('OK')
-
-#
-
-#
-
-
-
-# Le concours blanc du Meilleur Dec de France 2019
-"""
-  Le but de challenge est de déterminer si une année est bissextile ou non. 01
-""" 
-def bissextile(): # main
-  entierUn = int(input())
-  liste = [int(input()) for _ in range(entierUn)]
-
-  for item in liste:
-    if item%400 == 0:
-      print('BISSEXTILE')
-    else:
-      if ((item%4) == 0) and ((item%100) != 0):
-        print('BISSEXTILE')
-      else:
-        print('NON BISSEXTILE')
-  pass
-
-#
-
-#
-
-# Le concours blanc du Meilleur Dec de France 2019
-"""
-  Un entier correspondant au plus grand gain potentiel en achetant une des actions. 01
-""" 
-def plusGrandGainPotentiel(): # main
-  entierUn = int(input())
-  entierDeux = int(input())
-  liste = [input() for _ in range(entierDeux)]
-
-  maxi = 0
-
-  for i in liste:
-    if entierUn > int(i.split(' ')[0]):
-      if (int(i.split(' ')[1]) - int(i.split(' ')[0])) > maxi:
-        maxi = (int(i.split(' ')[1]) - int(i.split(' ')[0]))
-  print(maxi)
-  pass
-
-#
-
-#
-
-# Battle Dev Hello Work - Mars 2019
-"""
-  Vous devez déterminer le montant gagné lors de votre pari. 01
-"""
-def montantGagneParis(): # main
-  position = int(input())
-  liste = [input() for _ in range(42)]
-
-  for i in liste:
-    position = position + (int(i.split(' ')[0]) - int(i.split(' ')[1]))
+  ok = True
+  while ok:
+    liste.append(input())
+    if liste[-1] == '':
+      liste.remove('')
+      ok = False
   
-  if position <= 100:
-    print(1000)
-  else:
-    if position <= 10000:
-      print(100)
-    else:
-      print('KO')
+  newListe = []
+  for mot in liste:
+    score = 0
+    for lettre in mot:
+      if lettre in séquenceDeLettre:
+        indexLettre = séquenceDeLettre.index(lettre)
+        score += int(séquenceDeLettre[indexLettre+2])
+    newListe.append((mot, score))
+
+  newListe = sorted(newListe, key=takeSecond)
+
+  for i in reversed(newListe):
+    print(i[0])
   pass
 
-#
-
-#
-
-
-
-
-# Battle Dev Hello Work - Mars 2019
-"""
-  Une chaîne de caractères correspondant au prénom de vainqueur. 01
-"""
-def gagantEnchere(): # main
-  nbrEncheres = int(input())
-  prixReserve = int(input())
-  liste = [input() for _ in range(nbrEncheres)]
-
-  gagant = 0
-  maxEnchere = 0
-  for index, item in enumerate(liste):
-    if int(item.split(' ')[0]) > prixReserve:
-      if int(item.split(' ')[0]) > maxEnchere:
-        maxEnchere = int(item.split(' ')[0])
-        gagant = index
-  if maxEnchere <= prixReserve:
-    print('KO')
-  else:
-    print(liste[gagant].split(' ')[1])
-  pass
-
-#
-
-#
-
-
-##############
 """
   Vous devez déterminer le nombre minimun de deplacement pour atteindre le bas de la piste.
 """
 MOVES = [(1, 0), (0, 1), (-1, 0)]
-
 
 def walkable(c):
   return c != 'X'
@@ -347,25 +176,4 @@ def maxCoursSéchable(): # main
       j = j-(nbrPlageCours-1)
 
   for i in range(nbrPlageCours):
-    listDurerCours.pop
-
-
-"""     The concours Boilerplate      """
-
-def fonctionUne( a ):
-  return a
-
-def fonctionDeux( a ):
-  return a
-
-def main(): # main
-  entierUn = int(input())
-  #entierDeux = int(input())
-  #entierTrois = int(input())
-  liste = [int(input()) for _ in range(entierUn)]
-
-  print(liste)
-  pass
-
-if __name__ == "__main__":
-  main()
+    listDurerCours.pop()
