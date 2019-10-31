@@ -6,52 +6,76 @@
 def carburantNecessaire(conso, distance):
   return (conso*distance)/100
 
-def stationService():  # main
+def stationService():  # mai
   entierUn = int(input())
   entierDeux = int(input())
-  listeUne = [int(input()) for x in range(3)]
+  liste = [int(input()) for x in range(3)]
   entierSix = int(input())
 
-  for index, item in enumerate(listeUne):
+  for index, item in enumerate(liste):
     if index == 0:
       if carburantNecessaire(entierDeux, item) > entierUn:
         print('KO')
         break
     else:
-      if carburantNecessaire(entierDeux, item-listeUne[index-1]) > entierUn:
+      if carburantNecessaire(entierDeux, item-liste[index-1]) > entierUn:
         print('KO')
         break
   else:
-    if carburantNecessaire(entierDeux, entierSix-listeUne[2]) > entierUn:
+    if carburantNecessaire(entierDeux, entierSix-liste[2]) > entierUn:
       print('KO')
     else:
       print('OK')
   pass
 
+""" Classe tes amis!  #BFF """ # 01
 
-""" Charlotte et la chocolatinerie """ # 02
+def getRelationshipIds(chaine):
+  return int(chaine.split(' ')[0]), int(chaine.split(' ')[1])
 
-def sumEntier(nbr):
-  return sum(map(int, [x for x in str(nbr)]))
+def classeTesAmis(): # main
+  ligneUne = input()
+  _, M = getRelationshipIds(ligneUne)
 
-def charlotteChocolatine(): # main
-  entierUn = int(input())
-  liste = []
-  cpt = 0
+  lignes = [input() for _ in range(M)]
 
-  for i in range(entierUn):
-    liste.append(int(input()))
-    if liste[i] is 42:
-      cpt += 1
-    while len(str(liste[i])) > 2:
-      liste[i] = sumEntier(liste[i])
-      if liste[i] is 42:
-        cpt += 1
+  rel = {}
+  cnt = {}
+
+  for ligne in lignes:
+    a, b = getRelationshipIds(ligne)
+
+    if a not in rel:
+      rel[a] = set()
+    if b not in rel:
+      rel[b] = set()
+
+    rel[a].add(b)
+    rel[b].add(a)
+
+  if 1 not in rel:
+    print(-1)
+  else:
+    for fr in rel[1]:
+      cnt[fr] = 0
+      for fr2 in rel[fr]:
+        if fr2 in rel[1]:
+          cnt[fr] = cnt[fr]+1
+
+  mx = 0
+  mx_id = -1
+
+  for fr in cnt.keys():
+    if cnt[fr] > mx:
+      mx = cnt[fr]
+      mx_id = fr
+    elif cnt[fr] == mx:
+      if mx == 0:
         continue
-  print(cpt)
+      mx_id = max(mx_id, fr)
+
+  print(mx_id)
   pass
-
-
 
 
 
@@ -63,8 +87,8 @@ def sauteBrique(): # main
   liste = [input() for _ in range(entierUn)]
   maxi = 0
   s = 0
-  for i in range(entierUn):
-    if liste[i] == "X":
+  for i in liste:
+    if i == "X":
       s = 0
     else:
       s+=1
@@ -102,6 +126,30 @@ def salleDeSport(): # main
       break
   pass
 
+
+""" Charlotte et la chocolatinerie """  # 02
+
+
+def sumEntier(nbr):
+  return sum(map(int, [x for x in str(nbr)]))
+
+
+def charlotteChocolatine():  # main
+  entierUn = int(input())
+  liste = []
+  cpt = 0
+
+  for i in range(entierUn):
+    liste.append(int(input()))
+    if liste[i] is 42:
+      cpt += 1
+    while len(str(liste[i])) > 2:
+      liste[i] = sumEntier(liste[i])
+      if liste[i] is 42:
+        cpt += 1
+        continue
+  print(cpt)
+  pass
 
 
 
@@ -156,11 +204,9 @@ def trading(): # main
 
   for i in liste:
     if entierUn > int(i.split(' ')[0]):
-      if (int(i.split(' ')[1]) - int(i.split(' ')[0])) > maxi:
-        maxi = (int(i.split(' ')[1]) - int(i.split(' ')[0]))
+      maxi = max(maxi, (int(i.split(' ')[1]) - int(i.split(' ')[0])))
   print(maxi)
   pass
-
 
 
 
@@ -250,10 +296,10 @@ def casino(): # main
 "######################" # The concours boilerplate
 """ The concours Boilerplate """  # 01
 
-def fonctionUne( a ):
+def fonctionUne(a):
   return a
 
-def fonctionDeux( a ):
+def fonctionDeux(a):
   return a
 
 def main(): # main
