@@ -1,12 +1,133 @@
 # https://www.programiz.com/python-programming/methods/built-in/
 
+"######################"  # Meilleur Dev de France 2015
+""" Poker """  # 01
+
+def interpretePoker(evt):
+  return int(evt.split(' ')[0]), int(evt.split(' ')[1])
+
+def poker():  # main
+  sommeJoueur = int(input())
+  nbrTour = int(input())
+  liste = [int(input()) for _ in range(nbrTour)]
+
+  for i in liste:
+    X, Y = interprete(i)
+    sommeJoueur += -X+Y 
+  print(sommeJoueur)
+  pass
+
+
+""" Nuage de tags """  # 02
+
+from collections import Counter
+"""
+  import operator
+  dics = {'a':1000, 'b':3000, 'c': 100}
+  for i in range(5):
+    key, value = max(dics.items(), key=operator.itemgetter(1))
+    print("{} {}".format(key, value))
+    del dics[key]
+  pass
+  Max of a dics
+"""
+def nuageDeTags(): # main
+  nbrTag = int(input())
+  tags = [input() for _ in range(nbrTag)]
+  c = Counter(tags)
+  for keyword, nb_occ in c.most_common(5):
+    print(keyword, nb_occ)
+  pass
+
+
+""" Salesforce - Qualité de la base """  # 03
+
+import re
+"""
+  import re
+  pattern = '^\+[0-9]{1,3}-[0-9]{9,11}'
+  test_string = '+123-258476985'
+  result = re.match(pattern, test_string)
+  if result:
+    print("Search successful.")
+  else:
+    print("Search unsuccessful.")
+"""
+
+def interpreteSales(record):
+  return record.split(';')[0], record.split(';')[1], record.split(';')[2], record.split(';')[3], record.split(';')[4]
+
+def sakesForce(): # main
+  N = int(input())
+  maZone = input().split(';')
+  data = [input() for _ in range(N)]
+  X, Y, Z = 0, 0, 0
+
+  dics = {}
+  pattern = '^\+[0-9]{1,3}-[0-9]{9,11}'
+
+  for i in data:
+    nom, prenom, societe, tel, pays = interprete(i)
+    if nom+prenom+societe not in dics.keys():
+      dics[nom+prenom+societe] = 0
+      result = re.match(pattern, tel)
+      if result:
+        if len(tel.split('-')[1]) > 11:
+          Y += 1
+      else:
+        Y += 1
+      if pays not in maZone:
+        Z += 1
+    else:
+      X += 1
+
+  print("{} {} {}".format(X, Y, Z))  
+  pass
+
+
+"######################" # Meilleur Dev de France Octobre 2019 (Session 18:00)
+""" Grand prix de Monaco """  # 01
+
+def grandPrixMonaco():  # main
+  p = int(input())-1
+  N = int(input())
+  pos = [i for i in range(20)]
+  pos2 = [i for i in range(20)]
+  ko = [False]*20
+  for _ in range(N):
+    a, c = input().split()
+    a = int(a)-1
+    if c == 'D':
+      po = pos[a]
+      b = pos2[po-1]
+      pos[a] -= 1
+      pos[b] += 1
+      pos2[po] = b
+      pos2[po-1] = a
+    else:
+      po = pos[a]
+      for i in range(po+1, 20):
+        b = pos2[i]
+        pos[b] -= 1
+        pos2[i-1] = b
+      pos[a] = 19
+      pos2[19] = a
+      ko[a] = True
+
+  if ko[p]:
+    print("KO")
+  else:
+    print(pos[p]+1)
+  pass
+
+
 "######################" # Meilleur Dev de France Octobre 2019 (Session 15:20)
 """ Station service """ # 01
 
 def carburantNecessaire(conso, distance):
   return (conso*distance)/100
 
-def stationService():  # mai
+def stationService():  # main
   entierUn = int(input())
   entierDeux = int(input())
   liste = [int(input()) for x in range(3)]
@@ -296,8 +417,8 @@ def casino(): # main
 "######################" # The concours boilerplate
 """ The concours Boilerplate """  # 01
 
-def fonctionUne(a):
-  return a
+def interprete(evt):
+  return int(evt.split(' ')[0]), evt.split(' ')[1]
 
 def fonctionDeux(a):
   return a

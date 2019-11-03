@@ -4,6 +4,54 @@ from copy import deepcopy
 from pprint import pprint
 from collections import deque
 
+"""
+  Linear search.
+"""
+def linear_search(data, target):
+  for index, value in enumerate(data):
+    if value == target:
+      return print("{} is in position {}".format(target, index))
+  else:
+    return print("{} is not in the list ".format(target))
+  pass
+
+
+"""
+  Iterative binary search.
+"""
+def iterative_binary_search(data, target):
+  low = 0
+  high = len(data) - 1
+
+  while low <= high:
+    mid = (low + high) // 2
+    if target == data[mid]:
+      return print("{} is in position {}".format(target, data.index(target)))
+    elif target < data[mid]:
+      high = mid - 1
+    else: 
+      low = mid + 1
+  else: 
+    return print("{} is not in the list ".format(target))
+  pass
+
+
+"""
+  Recursive binary search.
+"""
+def recursive_binary_search(data, target, low, high):
+  if low > high:
+    return print("{} is not in the list ".format(target))
+  else:
+    mid = (low + high) // 2
+    if data[mid] == target:
+      return print("{} is in position {}".format(target, data.index(target)))
+    elif target < data[mid]:
+      recursive_binary_search(data, target, low, mid - 1)
+    else:
+      recursive_binary_search(data, target, mid + 1, high)
+  pass
+
 
 """
   Dessine une matrice 10x10 avec une croix.
@@ -177,3 +225,9 @@ def maxCoursSéchable(): # main
 
   for i in range(nbrPlageCours):
     listDurerCours.pop()
+
+""" Temps d'exécusion d'un programme """
+
+import timeit
+exc_time = timeit.timeit(lambda: fibonacci(1000000), number=1)/1
+print(exc_time)
