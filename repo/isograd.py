@@ -85,6 +85,30 @@ def sakesForce(): # main
   pass
 
 
+""" Trending topics """  # 03
+
+from collections import Counter
+
+def trendingTopic(): # main
+  nbrHashtags = int(input())
+  flux = [input() for _ in range(nbrHashtags)]
+
+  hashtags = []
+  c = {}
+  for hashtag in flux:
+    hashtags.append(hashtag)
+    if len(hashtags) == 60:
+      c = Counter(hashtags)
+    if len(hashtags) > 60:
+      c[hashtag] += 1
+      c[hashtags[-(60 + 1)]] -= 1
+    if len(hashtags) >= 60:
+      for hashtag in c:
+        if c[hashtag] >= 40:
+          return print(hashtag)
+  return  print("Pas de trending topic")
+
+
 "######################" # Meilleur Dev de France Octobre 2019 (Session 18:00)
 """ Grand prix de Monaco """  # 01
 
@@ -410,8 +434,6 @@ def casino(): # main
 
   print(cpt)
   pass
-
-
 
 
 "######################" # The concours boilerplate
