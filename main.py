@@ -1,16 +1,5 @@
 def min_list(liste):
-  return [j for j, x in enumerate(liste) if x == min(liste)]
-
-def max_coursSechable(liste, pas, cursor):
-  min_indexes = {}
-  while True:
-    if cursor >= len(liste):
-      return sum(liste)
-    min_index_liste = min_list(liste[cursor:cursor+pas])
-    min_indexes[(cursor, cursor+pas)] = [x+cursor for x in min_index_liste]
-    for i in min_index_liste:
-      cursor += i + cursor + 1
-      max_coursSechable(liste, pas, cursor)
+  return [j for j, x in enumerate(liste) if x == min(liste)][-1]
 
 def main():  # main
   plageCours = int(input())
@@ -19,9 +8,13 @@ def main():  # main
 
   pas = nbrCoursSéchable + 1
   cursor = 0
-  maxi = 0
-  maxi = max(max_coursSechable(liste, pas, cursor), maxi)
-  print(maxi)
+  while True:
+    if cursor >= len(liste):
+      return print(sum(liste))
+    min_index = min_list(liste[cursor:cursor+pas])
+    id_item = min_index + cursor
+    liste[id_item] = 0
+    cursor += id_item + 1
 
 if __name__ == "__main__":
   main()
